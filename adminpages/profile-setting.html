@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Landrick - Bootstrap 5 Multipurpose App, Saas & Software Landing & Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Css -->
+    <link href="./libs/simplebar/simplebar.min.css" rel="stylesheet">
+    <!-- Bootstrap Css -->
+    <link href="./css/bootstrap.min1.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="./libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="./libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
+    <!-- Style Css-->
+    <link href="./css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <div class="page-wrapper toggled">
+        <!-- sidebar-wrapper -->
+        <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
+            <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
+                <div class="sidebar-brand btn">
+                    <button onclick="loadDashboard()">
+                        <img src="../gharpayy.com/img/logo/gharpayy_logo2.png" height="30" class="logo-light-mode"
+                            alt="">
+                    </button>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <button class="btn" onclick="loadProtectedPage('dashboard')">
+                        <i class="ti ti-home me-2"></i>Dashboard
+                    </button>
+
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('allListings')">
+                            <i class="ti ti-file-invoice me-2"></i>Listings
+                        </button>
+                    </li>
+
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('addListing')">
+                            <i class="ti ti-file-invoice me-2"></i>Add Listing
+                        </button>
+                    </li>
+
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('profileSetting')">
+                            <i class="ti ti-user me-2"></i>User Profile
+                        </button>
+                    </li>
+                    <li class="logout-btn" id="logoutBtn">
+                        <a href="#" onclick="logout()">Logout</a>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </nav>
+        <!-- sidebar-wrapper  -->
+
+        <!-- Start Page Content -->
+        <main class="page-content bg-light">
+
+            <div class="container-fluid">
+                <div class="layout-specing">
+                    <div class="d-md-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Profile Setting</h5>
+
+                        <nav aria-label="breadcrumb" class="d-inline-block mt-2 mt-sm-0">
+                            <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
+                                <li class="breadcrumb-item text-capitalize"><button onclick="loadDashboard()"
+                                        class="btn">Dashboard</button></li>
+                                <li class="breadcrumb-item text-capitalize active" aria-current="page">Setting</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card form-signin p-4 rounded shadow">
+                                <a href="index.html"><img src="assets/images/logo-icon.png"
+                                        class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
+                                <h5 class="mb-3 text-center">Your Profile</h5>
+                                <div class="text-center">
+                                    <h5 id="fullName" class="mt-3"> Name </h5>
+                                    <p id="userEmail" class="text-muted">user@gmail.com </p>
+                                    <button onclick="loadProtectedPage('resetpass')" class="reset-btn btn"> Reset
+                                        Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end container-->
+
+
+        </main>
+        <!--End page-content" -->
+    </div>
+    <!-- page-wrapper -->
+
+    <script>
+        async function getProfile() {
+            const userId = localStorage.getItem("userId");
+            const token = localStorage.getItem("token");
+
+            if (!userId || !token) {
+                alert("User not authenticated. Please log in again.");
+                window.location.href = "/admin";
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/users/profile/${userId}`, {
+                    method: "GET", 
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    }, 
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch profile");
+                }
+
+                const user = await response.json();
+
+                document.getElementById("fullName").textContent = user.name;
+                document.getElementById("userEmail").textContent = user.email;
+
+            } catch (error) {
+                console.error("Error fetching profile:", error);
+                alert("Error fetching profile. Please try again.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", getProfile);
+
+    </script>
+    <!-- JAVASCRIPT -->
+    <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./libs/feather-icons/feather.min.js"></script>
+    <script src="./libs/simplebar/simplebar.min.js"></script>
+    <!-- Main Js -->
+    <script src="./js/plugins.init.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/logout.js"></script>
+    <script src="./js/protected.js"></script>
+
+</body>
+
+</html>

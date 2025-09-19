@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>Gharpayy Admin | Add new Listing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Version" content="v4.9.0" />
+
+
+    <link href="./libs/simplebar/simplebar.min.css" rel="stylesheet">
+    <!-- Bootstrap Css -->
+    <link href="./css/bootstrap.min1.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="./libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="./libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
+    <!-- Style Css-->
+    <link href="./css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+    <div class="page-wrapper toggled">
+        <!-- sidebar-wrapper -->
+        <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
+            <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
+                <div class="sidebar-brand btn">
+                    <button onclick="loadDashboard()">
+                        <img src="../gharpayy.com/img/logo/gharpayy_logo2.png" height="30" class="logo-light-mode"
+                            alt="">
+                    </button> 
+                </div>
+
+                <ul class="sidebar-menu">
+                    <button class="btn" onclick="loadProtectedPage('dashboard')">
+                        <i class="ti ti-home me-2"></i>Dashboard
+                    </button>
+                
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('allListings')">
+                            <i class="ti ti-file-invoice me-2"></i>Listings
+                        </button>
+                    </li>
+                
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('addListing')">
+                            <i class="ti ti-file-invoice me-2"></i>Add Listing
+                        </button>
+                    </li>
+                
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('profileSetting')">
+                            <i class="ti ti-user me-2"></i>User Profile
+                        </button>
+                    </li>
+                    <li class="logout-btn" id="logoutBtn">
+                        <a href="#" onclick="logout()">Logout</a>
+                    </li>
+                </ul>
+                <!-- sidebar-menu  -->
+            </div>
+
+        </nav>
+        <!-- sidebar-wrapper  -->
+
+        <!-- Start Page Content -->
+        <main class="page-content bg-light">
+
+            <div class="top-header">
+                <div class="header-bar d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <a href="#" class="logo-icon me-3">
+                            <img src="assets/images/logo-icon.png" height="30" class="small" alt="">
+                            <span class="big">
+                                <img src="assets/images/logo-dark.png" height="24" class="logo-light-mode" alt="">
+                                <img src="assets/images/logo-light.png" height="24" class="logo-dark-mode" alt="">
+                            </span>
+                        </a>
+                        <a id="close-sidebar" class="btn btn-icon btn-soft-light" href="javascript:void(0)">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-fluid">
+                <div class="layout-specing">
+                    <div class="d-md-flex justify-content-between align-items-center d-print-none">
+                        <nav aria-label="breadcrumb" class="d-inline-block " style="margin-top: 50px;">
+                            <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
+                                <li class="breadcrumb-item text-capitalize"><button class="btn" onclick="loadDashboard()">Dashboard</button></li>
+                                <li class="breadcrumb-item text-capitalize active" aria-current="page">Add Listing</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="card shadow rounded border-0">
+                                <div class="card-body">
+                                    <div class="container mt-5">
+                                        <h1 class="mb-4" style="font-size: 25px; font-weight: bold;">Add New Listing
+                                        </h1>
+                                        <form id="addListingForm">
+                                            <!-- Listing Name -->
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="listingName" class="form-label">Listing Name:</label>
+                                                    <input type="text" class="form-control" id="listingName"
+                                                        placeholder="Enter listing name">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="listingLocation" class="form-label">Location:</label>
+                                                    <input type="text" class="form-control" id="listingLocation"
+                                                        placeholder="Enter location">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="listingGender" class="form-label">Gender:</label>
+                                                    <select class="form-select" id="listingGender">
+                                                        <option value="M">M</option>
+                                                        <option value="F">F</option>
+                                                        <option value="Coed">Coed</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="listingType" class="form-label">Type:</label>
+                                                    <select class="form-select" id="listingType">
+                                                        <option value="LUXE MAX">LUXE MAX</option>
+                                                        <option value="BASIC PLUS">BASIC PLUS</option>
+                                                        <option value="CLASSICS">CLASSICS</option>
+                                                        <option value="ADVANTAGE">ADVANTAGE</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="listingStatus" class="form-label">Status:</label>
+                                                    <select class="form-select" id="listingStatus"
+                                                        onchange="toggleOpeningDate()">
+                                                        <option value="open">Open</option>
+                                                        <option value="not_open">Not Open</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-3" id="openingDateGroup" style="display: none;">
+                                                    <label for="openingDate" class="form-label">Opening Date:</label>
+                                                    <input type="text" class="form-control" id="openingDate"
+                                                        placeholder="Opening in" value="">
+                                                </div>
+                                            </div>
+
+                                            <!-- Amenities -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Amenities:</label>
+
+                                                <!-- Kitchen Essentials -->
+                                                <div class="mb-2">
+                                                    <h5>Kitchen Essentials</h5>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityMicrowave">
+                                                        <label class="form-check-label"
+                                                            for="amenityMicrowave">Microwave</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityRefrigerator">
+                                                        <label class="form-check-label"
+                                                            for="amenityRefrigerator">Refrigerator</label>
+                                                    </div>
+                                                    <!-- <input type="text" class="form-control mt-2"
+                                                        placeholder="Add more..."> -->
+                                                </div>
+
+                                                <!-- Utilities -->
+                                                <div class="mb-2">
+                                                    <h5>Utilities</h5>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityWifi">
+                                                        <label class="form-check-label" for="amenityWifi">WiFi</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityElectricity">
+                                                        <label class="form-check-label"
+                                                            for="amenityElectricity">Electricity Bill</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityWater">
+                                                        <label class="form-check-label" for="amenityWater">Water
+                                                            Bill</label>
+                                                    </div>
+                                                    <!-- <input type="text" class="form-control mt-2"
+                                                        placeholder="Add more..."> -->
+                                                </div>
+
+                                                <!-- Comfort -->
+                                                <div class="mb-2">
+                                                    <h5>Comfort</h5>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityGeyser">
+                                                        <label class="form-check-label" for="amenityGeyser">Geyser Hot
+                                                            Water</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityWardrobe">
+                                                        <label class="form-check-label" for="amenityWardrobe">Wooden
+                                                            Wardrobe</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="amenityCot">
+                                                        <label class="form-check-label" for="amenityCot">Wooden Cot and
+                                                            Mattress</label>
+                                                    </div>
+                                                    <!-- <input type="text" class="form-control mt-2"
+                                                        placeholder="Add more..."> -->
+                                                </div>
+
+                                                <!-- Facilities -->
+                                                <div class="mb-2">
+                                                    <h5>Facilities</h5>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityHousekeeping">
+                                                        <label class="form-check-label"
+                                                            for="amenityHousekeeping">Professional Housekeeping</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityWashingMachine">
+                                                        <label class="form-check-label"
+                                                            for="amenityWashingMachine">Automatic Washing
+                                                            Machine</label>
+                                                    </div>
+                                                    <!-- <input type="text" class="form-control mt-2"
+                                                        placeholder="Add more..."> -->
+                                                </div>
+
+                                                <!-- Security -->
+                                                <div class="mb-2">
+                                                    <h5>Security</h5>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityCCTV">
+                                                        <label class="form-check-label" for="amenityCCTV">CCTV</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="amenityRFID">
+                                                        <label class="form-check-label" for="amenityRFID">RFID
+                                                            Glasses</label>
+                                                    </div>
+                                                    <!-- <input type="text" class="form-control mt-2"
+                                                        placeholder="Add more..."> -->
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="mb-3">
+                                                <label class="form-label">Uploaded Photos:</label>
+                                                <div id="uploadedPhotos" class="d-flex gap-3">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="listingPhoto" class="form-label">Upload Photo:</label>
+                                                <input type="file" class="form-control" id="listingPhoto"
+                                                    accept="image/*">
+                                            </div>
+                                            <button type="button" id="uploadPhotoBtn" class="btn btn-primary">Upload
+                                                Photo</button>
+
+                                            <div class="mb-3">
+                                                <label for="listingDescription" class="form-label">Description:</label>
+                                                <textarea class="form-control" id="listingDescription" rows="5"
+                                                    placeholder="Enter description"></textarea>
+                                            </div>
+
+                                            <button type="button" id="saveButton" class="btn btn-primary">Save</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div>
+            </div><!--end container-->
+
+
+        </main>
+        <!--End page-content" -->
+    </div>
+    <!-- page-wrapper -->
+
+    <!-- javascript -->
+    <script>
+        function toggleOpeningDate() {
+            const status = document.getElementById('listingStatus').value;
+            const openingDateGroup = document.getElementById('openingDateGroup');
+
+            if (status === 'not_open') {
+                openingDateGroup.style.display = 'block';
+            } else {
+                openingDateGroup.style.display = 'none';
+                document.getElementById('openingDate').value = '';
+            }
+        }
+    </script>
+    <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./libs/feather-icons/feather.min.js"></script>
+    <script src="./libs/simplebar/simplebar.min.js"></script>
+    <!-- Main Js -->
+    <script src="./js/plugins.init.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/addListing.js"> </script>
+    <script src="./js/protected.js"></script>
+    <script src="./js/logout.js"></script>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Landrick - Bootstrap 5 Multipurpose App, Saas & Software Landing & Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+
+    <link href="./libs/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.min1.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./libs/tiny-slider/tiny-slider.css" type="text/css">
+    <link href="./libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="./libs/%40iconscout/unicons/css/line.css" rel="stylesheet" type="text/css" />
+    <link href="./css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+    <div class="page-wrapper toggled">
+        <!-- sidebar-wrapper -->
+        <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
+            <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
+                <div class="sidebar-brand btn">
+                    <button onclick="loadDashboard()">
+                        <img src="../gharpayy.com/img/logo/gharpayy_logo2.png" height="30" class="logo-light-mode"
+                            alt="">
+                    </button>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <button class="btn" onclick="loadProtectedPage('dashboard')">
+                        <i class="ti ti-home me-2"></i>Dashboard
+                    </button>
+
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('allListings')">
+                            <i class="ti ti-file-invoice me-2"></i>Listings
+                        </button>
+                    </li>
+
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('addListing')">
+                            <i class="ti ti-file-invoice me-2"></i>Add Listing
+                        </button>
+                    </li>
+
+                    <li>
+                        <button class="btn" onclick="loadProtectedPage('profileSetting')">
+                            <i class="ti ti-user me-2"></i>User Profile
+                        </button>
+                    </li>
+                    <li class="logout-btn" id="logoutBtn">
+                        <a href="#" onclick="logout()">Logout</a>
+                    </li>
+                </ul>
+                <!-- sidebar-menu  -->
+            </div>
+
+        </nav>
+        <!-- sidebar-wrapper  -->
+
+        <!-- Start Page Content -->
+        <main class="page-content bg-light">
+            <!-- Top Header -->
+            <div class="top-header">
+                <div class="header-bar d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <a href="#" class="logo-icon me-3">
+                            <img src="assets/images/logo-icon.png" height="30" class="small" alt="">
+                            <span class="big">
+                                <img src="assets/images/logo-dark.png" height="24" class="logo-light-mode" alt="">
+                                <img src="assets/images/logo-light.png" height="24" class="logo-dark-mode" alt="">
+                            </span>
+                        </a>
+                        <a id="close-sidebar" class="btn btn-icon btn-soft-light" href="javascript:void(0)">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+            
+                        <div class="search-bar p-0 d-none d-md-block ms-2 me-2">
+                            <div id="search" class="menu-search mb-0">
+                                <form role="search" method="get" id="searchform" class="searchform">
+                                    <div>
+                                        <input type="text" class="form-control border rounded" name="s" id="searchInput"
+                                            placeholder="Search by location or name">
+                                        <input type="submit" id="searchsubmit" value="Search">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+            
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary dropdown-toggle d-flex align-items-center " 
+                                type="button" style="margin-left: 10px; font-size: 22px;" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ti ti-filter"></i>
+                            </button>
+            
+                            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                                <div class="p-3 bg-light rounded shadow-sm d-flex flex-column gap-3">
+                                    <select id="genderFilter" class="form-select">
+                                        <option value="">All Genders</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="Coed">Coed</option>
+                                    </select>
+            
+                                    <select id="statusFilter" class="form-select">
+                                        <option value="">All Status</option>
+                                        <option value="open">Open</option>
+                                        <option value="not_open">Not Open</option>
+                                    </select>
+            
+                                    <select id="propTypeFilter" class="form-select">
+                                        <option value="">Type</option>
+                                        <option value="CLASSICS">Classics</option>
+                                        <option value="BASIC PLUS">Basic Plus</option>
+                                        <option value="ADVANTAGE">Advantage</option>
+                                        <option value="LUXE MAX">Luxe Max</option>
+                                    </select>
+            
+                                    <button class="btn btn-primary fw-bold" onclick="applyFilters()">Apply</button>
+                                </div>
+                          
+            
+                               
+            
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Header -->
+
+            <div class="container-fluid">
+                <div class="layout-specing">
+                    <div class="d-md-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Invoice List</h5>
+
+                        <nav aria-label="breadcrumb" class="d-inline-block mt-5">
+                            <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
+                                <li class="breadcrumb-item text-capitalize"><button class="btn"
+                                        onclick="loadDashboard()">Dashboard</button></li>
+                                <li class="breadcrumb-item text-capitalize active" aria-current="page">Listings</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 mt-4">
+                            <div class="table-responsive shadow rounded">
+                                <table class="table table-center bg-white mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-bottom p-3">Property No.</th>
+                                            <th class="border-bottom p-3">Prop Name</th>
+                                            <th class="text-center border-bottom p-3">Gender</th>
+                                            <th class="text-center border-bottom p-3" style="min-width: 120px;">Location
+                                            </th>
+                                            <th class="text-center border-bottom p-3">Type</th>
+                                            <th class="text-center border-bottom p-3">Status</th>
+                                            <th class="text-center border-bottom p-3" style="min-width: 150px;">Opening
+                                                In</th>
+                                            <th class="text-end border-bottom p-3" style="min-width: 200px;">Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-body">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+
+                    <div class="row text-center">
+                        <!-- PAGINATION START -->
+                        <div class="col-12 mt-4">
+                            <div class="d-md-flex align-items-center text-center justify-content-between">
+                                <span id="pagination-info" class="text-muted me-3">Showing 1 - 10 out of 50</span>
+                                <ul class="pagination mb-0 justify-content-center mt-4 mt-sm-0" id="pagination">
+                                    <!-- Pagination links will be dynamically inserted -->
+                                </ul>
+                            </div>
+                        </div><!-- end col -->
+                        <!-- PAGINATION END -->
+                    </div><!-- end row -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- page-wrapper -->
+
+
+    <script>
+        document.getElementById("filterToggle").addEventListener("click", function () {
+            const filters = document.getElementById("filtersSection");
+            filters.classList.toggle("show");
+        });
+
+    </script>
+
+    <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./libs/feather-icons/feather.min.js"></script>
+    <script src="./libs/simplebar/simplebar.min.js"></script>
+
+    <!-- Main Js -->
+    <script src="./js/plugins.init.js"></script>
+    <script src="./js/fetchListings.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/logout.js"></script>
+
+</body>
+
+
+
+</html>

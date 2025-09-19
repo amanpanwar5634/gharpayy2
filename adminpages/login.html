@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Landrick - Bootstrap 5 Multipurpose App, Saas & Software Landing & Admin Dashboard Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <!-- Css -->
+  <link href="./libs/simplebar/simplebar.min.css" rel="stylesheet">
+  <!-- Bootstrap Css -->
+  <link href="./css/bootstrap.min1.css" class="theme-opt" rel="stylesheet" type="text/css" />
+  <!-- Icons Css -->
+  <link href="./libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+  <link href="./css/icons.min.css" rel="stylesheet" type="text/css" />
+  <link href="./libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
+  <!-- Style Css-->
+  <link href="./css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+  <!-- Hero Start -->
+  <section class="bg-home bg-circle-gradiant d-flex align-items-center">
+    <div class="bg-overlay bg-overlay-white"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card form-signin p-4 rounded shadow">
+            <form>
+              <a href="index.html"><img src="../gharpayy.com/img/logo/gharpayy_logo2.png"
+                  class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
+              <h5 class="mb-3 text-center">Please sign in</h5>
+
+              <div class="form-floating mb-2">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+
+              <!-- <div class="d-flex justify-content-between">
+                                    
+                                    <p class="forgot-pass mb-0"><a href="reset-password.html" class="text-dark small fw-bold">Forgot password ?</a></p>
+                                </div> -->
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> <!--end container-->
+  </section><!--end section-->
+  <!-- Hero End -->
+
+  <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./libs/feather-icons/feather.min.js"></script>
+  <script src="./libs/simplebar/simplebar.min.js"></script>
+  <script src="./js/plugins.init.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/protected.js"></script>
+
+
+<script> 
+  document.querySelector('form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const email = document.querySelector('#floatingInput').value;
+    const password = document.querySelector('#floatingPassword').value;
+
+    try {
+      const response = await fetch('http://localhost:5000/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+      console.log(result);
+
+      if (response.ok) {
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('userId',result.user.id );
+
+        if (result.user.adminType === "super") {
+          loadDashboard();
+        } else if (result.user.adminType === "regular") {
+          loadEnquiries();
+        }
+        else{
+          alert("no entry");
+        }
+      } else {
+        alert(result.message || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An error occurred while trying to login');
+    }
+  });
+</script>
+
+
+</body>
+
+
+</html>
