@@ -8,6 +8,7 @@
     { "src": "/css/(.*)", "dest": "/css/$1" },
     { "src": "/libs/(.*)", "dest": "/libs/$1" },
     { "src": "/fonts/(.*)", "dest": "/fonts/$1" },
+      { "src": "/img/(.*)", "dest": "/img/$1" },
     { "src": "/(.*)", "dest": "/login.html" }
   ]
 }
