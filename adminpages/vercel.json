@@ -10,5 +10,6 @@
     { "src": "/fonts/(.*)", "dest": "/fonts/$1" },
       { "src": "/img/(.*)", "dest": "/img/$1" },
     { "src": "/(.*)", "dest": "/login.html" }
+
   ]
 }

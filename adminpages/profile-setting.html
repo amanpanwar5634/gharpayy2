@@ -6,15 +6,15 @@
     <title>Landrick - Bootstrap 5 Multipurpose App, Saas & Software Landing & Admin Dashboard Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Css -->
-    <link href="./libs/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="/libs/simplebar/simplebar.min.css" rel="stylesheet">
     <!-- Bootstrap Css -->
-    <link href="./css/bootstrap.min1.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min1.css" class="theme-opt" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="./libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
-    <link href="./css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="./libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
+    <link href="/libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
     <!-- Style Css-->
-    <link href="./css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="/css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -26,7 +26,7 @@
             <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
                 <div class="sidebar-brand btn">
                     <button onclick="loadDashboard()">
-                        <img src="../gharpayy.com/img/logo/gharpayy_logo2.png" height="30" class="logo-light-mode"
+                        <img src="/img/logo/gharpayy_logo2.png" height="30" class="logo-light-mode"
                             alt="">
                     </button>
                 </div>
@@ -117,7 +117,7 @@
             }
 
             try {
-                const response = await fetch(`http://localhost:5000/api/users/profile/${userId}`, {
+                const response = await fetch(`https://gharpayy-backend.vercel.app/api/users/profile/${userId}`, {
                     method: "GET", 
                     headers: {
                         "Content-Type": "application/json",
@@ -144,14 +144,14 @@
 
     </script>
     <!-- JAVASCRIPT -->
-    <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./libs/feather-icons/feather.min.js"></script>
-    <script src="./libs/simplebar/simplebar.min.js"></script>
+    <script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/libs/feather-icons/feather.min.js"></script>
+    <script src="/libs/simplebar/simplebar.min.js"></script>
     <!-- Main Js -->
-    <script src="./js/plugins.init.js"></script>
-    <script src="./js/app.js"></script>
-    <script src="./js/logout.js"></script>
-    <script src="./js/protected.js"></script>
+    <script src="/js/plugins.init.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/logout.js"></script>
+    <script src="/js/protected.js"></script>
 
 </body>
 
