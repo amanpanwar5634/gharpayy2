@@ -2346,7 +2346,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
         async function fetchListings() {
             try {
-                const response = await fetch("http://localhost:5000/api/listings/enabled");
+                const response = await fetch("https://gharpayy-backend.vercel.app/api/listings/enabled");
                 if (!response.ok) {
                     throw new Error("Failed to fetch listings");
                 }
@@ -2357,7 +2357,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
                 properties.forEach(property => {
                     const propertyCard = document.createElement("a");
-                    propertyCard.href = `http://localhost:5000/listingDetails.html?id=${property._id}`;
+                    propertyCard.href = `https://gharpayy-backend.vercel.app/listingDetails.html?id=${property._id}`;
                     propertyCard.className = "individual-prop";
                     propertyCard.classList.add("col-lg-3", "col-sm-12", "col-md-5");
 
